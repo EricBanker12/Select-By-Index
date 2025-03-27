@@ -1,5 +1,4 @@
 from itertools import islice
-import time
 import bpy
 import bmesh
 
@@ -21,7 +20,7 @@ class SelectByIndex(bpy.types.Operator):
 
     input_mode: bpy.props.EnumProperty(
         name="Input Mode",
-        description="Choose how the selection range is input",
+        description="Choose the selection range inputs",
         items=[
             ('INCLUSIVE', "Inclusive", "Input start index and inclusive stop index"),
             ('EXCLUSIVE', "Exclusive", "Input start index and exclusive stop index"),
@@ -173,7 +172,6 @@ class SelectByIndex(bpy.types.Operator):
         return {'FINISHED'}
         
     def invoke(self, context, event):
-        print("SelectByIndex.invoke")
         if context.tool_settings.mesh_select_mode[0]:  # Vertex mode
             self.select_mode = 'VERTEX'
         elif context.tool_settings.mesh_select_mode[1]:  # Edge mode
